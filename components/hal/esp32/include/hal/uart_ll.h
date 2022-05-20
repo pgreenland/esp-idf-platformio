@@ -291,6 +291,7 @@ FORCE_INLINE_ATTR uint32_t uart_ll_get_rxfifo_len(uart_dev_t *hw)
 {
     uint32_t fifo_cnt = HAL_FORCE_READ_U32_REG_FIELD(hw->status, rxfifo_cnt);
     typeof(hw->mem_rx_status) rx_status = hw->mem_rx_status;
+    typeof(hw->mem_conf) rx_config = hw->mem_conf;
     uint32_t len = 0;
 
     // When using DPort to read fifo, fifo_cnt is not credible, we need to calculate the real cnt based on the fifo read and write pointer.
@@ -298,9 +299,9 @@ FORCE_INLINE_ATTR uint32_t uart_ll_get_rxfifo_len(uart_dev_t *hw)
     if (rx_status.wr_addr > rx_status.rd_addr) {
         len = rx_status.wr_addr - rx_status.rd_addr;
     } else if (rx_status.wr_addr < rx_status.rd_addr) {
-        len = (rx_status.wr_addr + 128) - rx_status.rd_addr;
+        len = (rx_status.wr_addr + (128 * rx_config.rx_size)) - rx_status.rd_addr;
     } else {
-        len = fifo_cnt > 0 ? 128 : 0;
+        len = fifo_cnt > 0 ? (128 * rx_config.rx_size) : 0;
     }
 
     return len;
