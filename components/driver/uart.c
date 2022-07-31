@@ -319,7 +319,7 @@ esp_err_t uart_set_line_inverse(uart_port_t uart_num, uint32_t inverse_mask)
     return ESP_OK;
 }
 
-esp_err_t uart_set_sw_flow_ctrl(uart_port_t uart_num, bool enable,  uint8_t rx_thresh_xon,  uint8_t rx_thresh_xoff)
+esp_err_t uart_set_sw_flow_ctrl(uart_port_t uart_num, bool enable,  uint16_t rx_thresh_xon,  uint16_t rx_thresh_xoff)
 {
     UART_CHECK((uart_num < UART_NUM_MAX), "uart_num error", ESP_FAIL);
     UART_CHECK((rx_thresh_xon < SOC_UART_FIFO_LEN), "rx flow xon thresh error", ESP_FAIL);
@@ -336,7 +336,7 @@ esp_err_t uart_set_sw_flow_ctrl(uart_port_t uart_num, bool enable,  uint8_t rx_t
     return ESP_OK;
 }
 
-esp_err_t uart_set_hw_flow_ctrl(uart_port_t uart_num, uart_hw_flowcontrol_t flow_ctrl, uint8_t rx_thresh)
+esp_err_t uart_set_hw_flow_ctrl(uart_port_t uart_num, uart_hw_flowcontrol_t flow_ctrl, uint16_t rx_thresh)
 {
     UART_CHECK((uart_num < UART_NUM_MAX), "uart_num error", ESP_FAIL);
     UART_CHECK((rx_thresh < SOC_UART_FIFO_LEN), "rx flow thresh error", ESP_FAIL);
