@@ -246,7 +246,7 @@ esp_err_t uart_set_line_inverse(uart_port_t uart_num, uint32_t inverse_mask);
  *     - ESP_OK   Success
  *     - ESP_FAIL Parameter error
  */
-esp_err_t uart_set_hw_flow_ctrl(uart_port_t uart_num, uart_hw_flowcontrol_t flow_ctrl, uint8_t rx_thresh);
+esp_err_t uart_set_hw_flow_ctrl(uart_port_t uart_num, uart_hw_flowcontrol_t flow_ctrl, uint16_t rx_thresh);
 
 /**
  * @brief Set software flow control.
@@ -260,7 +260,7 @@ esp_err_t uart_set_hw_flow_ctrl(uart_port_t uart_num, uart_hw_flowcontrol_t flow
  *     - ESP_OK   Success
  *     - ESP_FAIL Parameter error
  */
- esp_err_t uart_set_sw_flow_ctrl(uart_port_t uart_num, bool enable,  uint8_t rx_thresh_xon,  uint8_t rx_thresh_xoff);
+ esp_err_t uart_set_sw_flow_ctrl(uart_port_t uart_num, bool enable,  uint16_t rx_thresh_xon,  uint16_t rx_thresh_xoff);
 
 /**
  * @brief Get the UART hardware flow control configuration.
