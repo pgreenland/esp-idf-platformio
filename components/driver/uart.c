@@ -127,7 +127,7 @@ typedef struct {
     uint8_t *rx_ptr;                    /*!< pointer to the current data in ring buffer*/
     uint8_t *rx_head_ptr;               /*!< pointer to the head of RX item*/
     uint8_t rx_data_buf[SOC_UART_FIFO_LEN]; /*!< Data buffer to stash FIFO data*/
-    uint8_t rx_stash_len;               /*!< stashed data length.(When using flow control, after reading out FIFO data, if we fail to push to buffer, we can just stash them.) */
+    uint16_t rx_stash_len;               /*!< stashed data length.(When using flow control, after reading out FIFO data, if we fail to push to buffer, we can just stash them.) */
     uint32_t rx_int_usr_mask;           /*!< RX interrupt status. Valid at any time, regardless of RX buffer status. */
     uart_pat_rb_t rx_pattern_pos;
     int tx_buf_size;                    /*!< TX ring buffer size */
